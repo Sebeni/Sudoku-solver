@@ -1,0 +1,9 @@
+.root{
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 20;
+}
+
+#buttons{
+    -fx-font-family: "Arial";
+    -fx-font-size: 15;
+}

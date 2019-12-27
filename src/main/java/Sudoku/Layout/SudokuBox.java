@@ -1,5 +1,6 @@
 package Sudoku.Layout;
 
+import Sudoku.Mechanic.CellCreator;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,8 +14,11 @@ import java.util.List;
 public class SudokuBox {
     private final Scene scene;
     private final GridPane gridPane = new GridPane();
+    
+    
+//    [column][row]
     private final TextField[][] textFields = new TextField[9][9];
-    private final String fontSize = "-fx-font-size: 20";
+    private final Pane[][] rootPanes = new Pane[9][9];
 
 
     public SudokuBox() {
@@ -24,19 +28,22 @@ public class SudokuBox {
         gridPane.setPadding(new Insets(20));
         BorderPane root = new BorderPane(gridPane);
 
-        Button sudokuButton = new Button("Resolve");
-        sudokuButton.setOnAction(event -> resolveButtonHandler());
-        
+        Button resolve = new Button("Resolve");
+        resolve.setOnAction(event -> resolveButtonHandler());
+        resolve.setId("buttons");
+
         Button clear = new Button("Clear");
         clear.setOnAction(event -> clearButtonHandler());
+        clear.setId("buttons");
 
-        HBox buttonBox = new HBox(10, sudokuButton, clear);
+        HBox buttonBox = new HBox(10, resolve, clear);
         buttonBox.setPadding(new Insets(20));
         buttonBox.setAlignment(Pos.CENTER);
 
         root.setBottom(buttonBox);
 
         scene = new Scene(root);
+        scene.getStylesheets().add("SudokuCells.css");
     }
 
     private void populateGrid() {
@@ -57,10 +64,12 @@ public class SudokuBox {
 
                 field.setOnMouseClicked(event -> field.clear());
 
-                field.setStyle(fontSize);
-
                 textFields[column][row] = field;
-                gridPane.add(field, column, row);
+
+                Pane pane = new Pane(field);
+                rootPanes[column][row] = pane;
+
+                gridPane.add(pane, column, row);
             }
         }
     }
@@ -69,19 +78,19 @@ public class SudokuBox {
         int firstBorder = 2;
         int secondBorder = 5;
 
-        for (int column = 0; column < textFields.length; column++) {
-            for (int row = 0; row < textFields[column].length; row++) {
+        for (int column = 0; column < rootPanes.length; column++) {
+            for (int row = 0; row < rootPanes[column].length; row++) {
                 if (row == firstBorder || row == secondBorder) {
-                    textFields[column][row].setStyle("-fx-border-width: 0 0 5 0; -fx-border-color: black;" + fontSize);
+                    rootPanes[column][row].setStyle("-fx-border-width: 0 0 5 0; -fx-border-color: black;");
                 }
 
                 if (column == firstBorder || column == secondBorder) {
                     if (column == firstBorder && (row == firstBorder || row == secondBorder)) {
-                        textFields[column][row].setStyle("-fx-border-width: 0 5 5 0; -fx-border-color: black;" + fontSize);
+                        rootPanes[column][row].setStyle("-fx-border-width: 0 5 5 0; -fx-border-color: black;");
                     } else if (row == firstBorder || row == secondBorder) {
-                        textFields[column][row].setStyle("-fx-border-width: 0 5 5 0; -fx-border-color: black;" + fontSize);
+                        rootPanes[column][row].setStyle("-fx-border-width: 0 5 5 0; -fx-border-color: black;");
                     } else {
-                        textFields[column][row].setStyle("-fx-border-width: 0 5 0 0; -fx-border-color: black;" + fontSize);
+                        rootPanes[column][row].setStyle("-fx-border-width: 0 5 0 0; -fx-border-color: black;");
                     }
                 }
             }
@@ -96,12 +105,30 @@ public class SudokuBox {
         for (TextField[] textField : textFields) {
             for (TextField field : textField) {
                 field.clear();
+                field.setStyle(null);
             }
         }
     }
 
     private void resolveButtonHandler() {
-        
+        clearStyles();
+        CellCreator cc = new CellCreator(this);
+        if (cc.createCells()) {
+            System.out.println("CORRECT");
+        } else {
+            AlertBox.display("Duplicated values", "There are duplicated values in highlighted cells!");
+        }
     }
 
+    public TextField[][] getTextFields() {
+        return textFields;
+    }
+    
+    private void clearStyles(){
+        for(TextField[] outer : textFields) {
+            for(TextField field : outer){
+                field.setStyle(null);
+            }
+        }
+    }
 }

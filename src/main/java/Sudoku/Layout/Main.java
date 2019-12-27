@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("SudokuBox solver");
+        primaryStage.setTitle("Sudoku solver");
         primaryStage.setScene(new SudokuBox().getScene());
         primaryStage.show();
         
