@@ -22,7 +22,7 @@ public class Square {
    | 1 | 4 | 7 |
    | 2 | 5 | 8 |
     */
-    public static List<Square> groupCellsToSquare(List<List<Cell>> board) {
+    public static List<Square> groupCellsToSquare(Board board) {
         List<Square> result = new ArrayList<>();
         
         for(int column = 0; column < 9; column += 3){
@@ -30,17 +30,17 @@ public class Square {
             Square secondMiddle = new Square();
             Square thirdDown = new Square();
             
-            List<Cell> firstColumn = board.get(column);
-            List<Cell> secondColumn = board.get(column + 1);
-            List<Cell> thirdColumn = board.get(column + 2);
+            Column firstColumn = board.getColumn(column);
+            Column secondColumn = board.getColumn(column + 1);
+            Column thirdColumn = board.getColumn(column + 2);
             
             for(int row = 0; row < 9; row++) {
                 if(row < 3) {
-                    firstUp.addCells(firstColumn.get(row), secondColumn.get(row), thirdColumn.get(row));
+                    firstUp.addCells(firstColumn.getCell(row), secondColumn.getCell(row), thirdColumn.getCell(row));
                 } else if (row < 6) {
-                    secondMiddle.addCells(firstColumn.get(row), secondColumn.get(row), thirdColumn.get(row));
+                    secondMiddle.addCells(firstColumn.getCell(row), secondColumn.getCell(row), thirdColumn.getCell(row));
                 } else {
-                    thirdDown.addCells(firstColumn.get(row), secondColumn.get(row), thirdColumn.get(row));
+                    thirdDown.addCells(firstColumn.getCell(row), secondColumn.getCell(row), thirdColumn.getCell(row));
                 }
                 
             }

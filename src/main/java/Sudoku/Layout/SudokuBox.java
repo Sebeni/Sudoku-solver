@@ -115,6 +115,7 @@ public class SudokuBox {
         CellCreator cc = new CellCreator(this);
         if (cc.createCells()) {
             System.out.println("CORRECT");
+            
         } else {
             AlertBox.display("Duplicated values", "There are duplicated values in highlighted cells!");
         }
@@ -128,6 +129,9 @@ public class SudokuBox {
         for(TextField[] outer : textFields) {
             for(TextField field : outer){
                 field.setStyle(null);
+                if(!field.getText().isEmpty()) {
+                    field.setStyle("-fx-background-color: grey");
+                }
             }
         }
     }
