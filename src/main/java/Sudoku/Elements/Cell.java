@@ -1,27 +1,26 @@
-package Sudoku.Mechanic;
+package Sudoku.Elements;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class Cell {
     private int numInside;
-    private int row;
-    private int column;
+    private int rowNum;
+    private int columnNum;
     
     
     private List<Integer> possibleChoices = new ArrayList<>();
     public static int EMPTY = -1;
     
 
-    public Cell(int numInside, int column, int row) {
+    public Cell(int numInside, int columnNum, int rowNum) {
         this.numInside = numInside;
-        this.column = column;
-        this.row = row;
+        this.columnNum = columnNum;
+        this.rowNum = rowNum;
 
         if(numInside == EMPTY){
-            for(int i = 1; i < 11; i++) {
+            for(int i = 1; i < 10; i++) {
                 possibleChoices.add(i);
             }
         }
@@ -31,17 +30,19 @@ public class Cell {
     public String toString() {
         return numInside == EMPTY ? "| _ " : "| "+ numInside +" ";
     }
+    
+    
 
     public int getNumInside() {
         return numInside;
     }
     
-    public int getRow() {
-        return row;
+    public int getRowNum() {
+        return rowNum;
     }
 
-    public int getColumn() {
-        return column;
+    public int getColumnNum() {
+        return columnNum;
     }
 
     public List<Integer> getPossibleChoices() {
@@ -59,12 +60,12 @@ public class Cell {
         if (!(o instanceof Cell)) return false;
         Cell cell = (Cell) o;
         return numInside == cell.numInside &&
-                row == cell.row &&
-                column == cell.column;
+                rowNum == cell.rowNum &&
+                columnNum == cell.columnNum;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numInside, row, column);
+        return Objects.hash(numInside, rowNum, columnNum);
     }
 }

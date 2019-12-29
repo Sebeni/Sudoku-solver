@@ -1,6 +1,10 @@
 package Sudoku.Layout;
 
-import Sudoku.Mechanic.CellCreator;
+import Sudoku.Algorithm.BoardCreator;
+import Sudoku.Algorithm.Resolver;
+import Sudoku.Elements.Board;
+import Sudoku.Elements.Cell;
+import Sudoku.Elements.Column;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,12 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class SudokuBox {
+public class SudokuWindow {
     private final Scene scene;
     private final GridPane gridPane = new GridPane();
+    private BoardCreator creator;
     
     
 //    [column][row]
@@ -21,7 +23,7 @@ public class SudokuBox {
     private final Pane[][] rootPanes = new Pane[9][9];
 
 
-    public SudokuBox() {
+    public SudokuWindow() {
         populateGrid();
         drawBorders();
 
@@ -112,12 +114,14 @@ public class SudokuBox {
 
     private void resolveButtonHandler() {
         clearStyles();
-        CellCreator cc = new CellCreator(this);
-        if (cc.createCells()) {
-            System.out.println("CORRECT");
-            
+        creator = new BoardCreator(textFields);
+        if (creator.setCells()) {
+            Board b = creator.getBoard();
+            Resolver resolver = new Resolver(b);
+            resolver.resolve();
+            fillTextFields(b);
         } else {
-            AlertBox.display("Duplicated values", "There are duplicated values in highlighted cells!");
+            AlertWindow.display("Duplicated values", "There are duplicated values in highlighted cells!");
         }
     }
 
@@ -132,6 +136,15 @@ public class SudokuBox {
                 if(!field.getText().isEmpty()) {
                     field.setStyle("-fx-background-color: grey");
                 }
+            }
+        }
+    }
+
+
+    private void fillTextFields(Board board) {
+        for(Column column : board.getColumns()) {
+            for (Cell cell : column.getCells()) {
+                textFields[cell.getColumnNum()][cell.getRowNum()].setText(String.valueOf(cell.getNumInside()));
             }
         }
     }

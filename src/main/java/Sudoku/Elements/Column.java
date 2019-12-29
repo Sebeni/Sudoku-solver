@@ -1,4 +1,4 @@
-package Sudoku.Mechanic;
+package Sudoku.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,4 +18,5 @@ public class Column {
     public Cell getCell(int index) {
         return cells.get(index);
     }
+    
 }

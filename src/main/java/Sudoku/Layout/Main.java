@@ -12,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Sudoku solver");
-        primaryStage.setScene(new SudokuBox().getScene());
+        primaryStage.setScene(new SudokuWindow().getScene());
         primaryStage.show();
     }
 }
