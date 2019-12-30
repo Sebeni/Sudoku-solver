@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Cell {
+public class Cell  {
     private int numInside;
     private int rowNum;
     private int columnNum;

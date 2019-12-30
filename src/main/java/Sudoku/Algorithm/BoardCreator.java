@@ -30,29 +30,11 @@ public class BoardCreator {
                 }
             }
         }
-
-        printInDebug();
+        
         InputValidator validator = new InputValidator(this);
         return validator.checkInputData();
     }
-
-    private void printInDebug() {
-        for (int x = 0; x < 9; x++) {
-            for (int y = 0; y < 9; y++) {
-                System.out.print(board.getColumn(y).getCell(x));
-            }
-            System.out.println();
-        }
-
-        System.out.println("SQUARES");
-        List<Box> boxes = board.getBoxes();
-        
-        for (int i = 0; i < boxes.size(); i++) {
-            System.out.println("square numero: " + i);
-            System.out.println(boxes.get(i));
-        }
-    }
-
+    
 
     public static List<Cell> getColumnCellsFilled(int columnNum, Board board) {
         return board.getColumn(columnNum).getCells().stream()

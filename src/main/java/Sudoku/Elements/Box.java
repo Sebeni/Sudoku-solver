@@ -2,8 +2,9 @@ package Sudoku.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class Box {
+public class Box  {
     private List<Cell> cellsInBox = new ArrayList<Cell>(9);
 
     public void addCells(Cell... cellsToAdd) {
@@ -28,5 +29,19 @@ public class Box {
             }
         }
         return sb.toString();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Box)) return false;
+        Box box = (Box) o;
+        return cellsInBox.equals(box.cellsInBox);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cellsInBox);
     }
 }

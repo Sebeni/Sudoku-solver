@@ -117,7 +117,7 @@ public class SudokuWindow {
         creator = new BoardCreator(textFields);
         if (creator.setCells()) {
             Board b = creator.getBoard();
-            Resolver resolver = new Resolver(b);
+            Resolver resolver = new Resolver(b, this);
             resolver.resolve();
             fillTextFields(b);
         } else {
@@ -141,7 +141,7 @@ public class SudokuWindow {
     }
 
 
-    private void fillTextFields(Board board) {
+    public void fillTextFields(Board board) {
         for(Column column : board.getColumns()) {
             for (Cell cell : column.getCells()) {
                 textFields[cell.getColumnNum()][cell.getRowNum()].setText(String.valueOf(cell.getNumInside()));

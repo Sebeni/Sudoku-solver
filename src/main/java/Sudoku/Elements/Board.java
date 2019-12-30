@@ -2,8 +2,9 @@ package Sudoku.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class Board {
+public class Board implements Cloneable  {
     private List<Column> columns = new ArrayList<>(9);
     private List<Box> boxes = new ArrayList<>(9);
 
@@ -24,8 +25,8 @@ public class Board {
         return columns;
     }
 
-    public Column getColumn(int index) {
-        return columns.get(index);
+    public Column getColumn(int columnNum) {
+        return columns.get(columnNum);
     }
 
     public List<Box> getBoxes() {
@@ -72,5 +73,34 @@ public class Board {
             }
         }
         return null;
+    }
+
+
+    @Override
+    public Board clone() throws CloneNotSupportedException {
+        Board original = this;
+        
+        Board boardClone = new Board();
+        
+        for(Column column : original.getColumns()) {
+            for(Cell c : column.getCells()) {
+                boardClone.getColumn(column.getColumnNumber()).getCell(c.getRowNum()).setNumInside(c.getNumInside());
+            }
+        }
+        return boardClone; 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Board)) return false;
+        Board board = (Board) o;
+        return columns.equals(board.columns) &&
+                boxes.equals(board.boxes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(columns, boxes);
     }
 }
