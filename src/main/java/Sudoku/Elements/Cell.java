@@ -1,5 +1,7 @@
 package Sudoku.Elements;
 
+import Sudoku.Algorithm.Resolver;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -52,7 +54,14 @@ public class Cell  {
     public void setNumInside(int numInside) {
         this.numInside = numInside;
     }
+    
+    public void setNumInsideClone(int numInside){
+        this.numInside = numInside;
+    }
 
+    public void setPossibleChoices(List<Integer> possibleChoices) {
+        this.possibleChoices = new ArrayList<>(possibleChoices);
+    }
 
     @Override
     public boolean equals(Object o) {

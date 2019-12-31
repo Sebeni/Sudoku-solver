@@ -9,20 +9,19 @@ import java.util.List;
 
 public class BoardState {
     private Board clonedBoard;
-    private final int iterationNum;
+
     private final int columnNumOfGuessedCell;
     private final int rowNumOfGuessedCell;
     private final LinkedList<Integer> possibleChoices;
 
     
-    public BoardState(Board boardToClone, int iterationNum, Cell guessedCell) {
+    public BoardState(Board boardToClone, Cell guessedCell) {
         try {
             this.clonedBoard = boardToClone.clone();
         } catch (CloneNotSupportedException e) {
-            System.out.println("Cloning went wrong");
             e.printStackTrace();
         }
-        this.iterationNum = iterationNum;
+    
         this.columnNumOfGuessedCell = guessedCell.getColumnNum();
         this.rowNumOfGuessedCell = guessedCell.getRowNum();
         this.possibleChoices = new LinkedList<>(guessedCell.getPossibleChoices());
@@ -32,9 +31,7 @@ public class BoardState {
         return clonedBoard;
     }
 
-    public int getIterationNum() {
-        return iterationNum;
-    }
+   
 
     public int getColumnNumOfGuessedCell() {
         return columnNumOfGuessedCell;

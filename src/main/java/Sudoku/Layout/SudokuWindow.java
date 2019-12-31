@@ -117,17 +117,18 @@ public class SudokuWindow {
         creator = new BoardCreator(textFields);
         if (creator.setCells()) {
             Board b = creator.getBoard();
-            Resolver resolver = new Resolver(b, this);
-            resolver.resolve();
+            Resolver resolver = new Resolver(b);
+            try{
+                b = resolver.resolve();
+            } catch (CloneNotSupportedException e){
+                e.printStackTrace();
+            }
             fillTextFields(b);
         } else {
             AlertWindow.display("Duplicated values", "There are duplicated values in highlighted cells!");
         }
     }
-
-    public TextField[][] getTextFields() {
-        return textFields;
-    }
+    
     
     private void clearStyles(){
         for(TextField[] outer : textFields) {

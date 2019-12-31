@@ -73,7 +73,12 @@ public class ResolverTestSuite {
         Resolver resolver = new Resolver(mockCreator.getBoard());
 
 //        when
-        Board result = resolver.resolve();
+        Board result = new Board();
+        try{
+            result = resolver.resolve();
+        } catch (CloneNotSupportedException e){
+            e.printStackTrace();
+        }
 
         printBoard(result);
 
@@ -130,17 +135,71 @@ public class ResolverTestSuite {
         Resolver resolver = new Resolver(mockCreator.getBoard());
 
 //        when
-        Board result = resolver.resolve();
+        Board result = new Board();
+        try{
+            result = resolver.resolve();
+        } catch (CloneNotSupportedException e){
+            e.printStackTrace();
+        }
 
         printBoard(result);
 
 //        then
-
         Assert.assertTrue(onlyUniqueNumbers(result));
-//        Assert.assertEquals(4, result.getColumn(0).getCell(0).getNumInside());
-//        Assert.assertEquals(8, result.getColumn(0).getCell(0).getNumInside());
-//        Assert.assertEquals(2, result.getColumn(0).getCell(0).getNumInside());
     }
+    
+    
+//    https://curiosity.com/topics/a-finnish-mathematician-claimed-that-this-is-the-most-difficult-sudoku-puzzle-in-the-world-curiosity/
+    @Test
+    public void testResolveWorldsHardestSudoku() {
+        Board board = new Board();
+        String values = 
+                "008" +
+                        "127" +
+                        "135" +
+                        "189" +
+                        "213" +
+                        "261" +
+                        "278" +
+                        "316" +
+                        "351" +
+                        "375" +
+                        "429" +
+                        "444" +
+                        "537" +
+                        "545" +
+                        "622" +
+                        "647" +
+                        "684" +
+                        "753" +
+                        "766" +
+                        "771" +
+                        "868";
+
+        fillBoard(board, values);
+        printBoard(board);
+
+        BoardCreator mockCreator = Mockito.mock(BoardCreator.class);
+
+        Mockito.when(mockCreator.getBoard()).thenReturn(board);
+        Resolver resolver = new Resolver(mockCreator.getBoard());
+
+//        when
+        Board result = new Board();
+        try{
+            result = resolver.resolve();
+        } catch (CloneNotSupportedException e){
+            e.printStackTrace();
+        }
+
+        printBoard(result);
+
+//        then
+        Assert.assertTrue(onlyUniqueNumbers(result));
+        Assert.assertEquals(9, result.getColumn(0).getCell(1).getNumInside());
+        Assert.assertEquals(2, result.getColumn(8).getCell(8).getNumInside());
+        
+    } 
 
 
     private void fillBoard(Board board, String columnRowValue) {

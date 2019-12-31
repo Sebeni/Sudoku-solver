@@ -67,6 +67,7 @@ public class Board implements Cloneable  {
     
     
     public Box getBox(Cell cellInside) {
+        
         for (Box b : boxes) {
             if(b.getCellsInBox().contains(cellInside)) {
                 return b;
@@ -84,7 +85,9 @@ public class Board implements Cloneable  {
         
         for(Column column : original.getColumns()) {
             for(Cell c : column.getCells()) {
-                boardClone.getColumn(column.getColumnNumber()).getCell(c.getRowNum()).setNumInside(c.getNumInside());
+                Cell cellToClone = boardClone.getColumn(column.getColumnNumber()).getCell(c.getRowNum());
+                cellToClone.setNumInsideClone(c.getNumInside());
+                cellToClone.setPossibleChoices(c.getPossibleChoices());
             }
         }
         return boardClone; 
