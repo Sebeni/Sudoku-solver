@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Column {
-    private int columnNumber;
-    private List<Cell> cells = new ArrayList<>(9);
+    private final int columnNumber;
+    private final List<Cell> cells = new ArrayList<>(9);
 
     public Column(int columnNumber) {
         this.columnNumber = columnNumber;

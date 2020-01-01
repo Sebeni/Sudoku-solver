@@ -3,9 +3,7 @@ package Sudoku.Algorithm;
 import Sudoku.Elements.Board;
 import Sudoku.Elements.Cell;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class BoardState {
     private Board clonedBoard;

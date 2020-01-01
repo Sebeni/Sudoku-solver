@@ -23,7 +23,7 @@ public class InputValidator {
         for (int column = 0; column < 9; column++) {
             List<Cell> allPresentValuesInColumn = BoardCreator.getColumnCellsFilled(column, boardCreator.getBoard());
 
-            Set<Integer> allIndividualValues = new HashSet<Integer>();
+            Set<Integer> allIndividualValues = new HashSet<>();
             allPresentValuesInColumn.forEach(cell -> allIndividualValues.add(cell.getNumInside()));
 
             if (allIndividualValues.size() != allPresentValuesInColumn.size()) {
@@ -37,7 +37,7 @@ public class InputValidator {
     boolean isRowCorrect() {
         for (int column = 0; column < 9; column++) {
             List<Cell> allPresentValuesInRow = BoardCreator.getRowCellsFilled(column, boardCreator.getBoard());
-            Set<Integer> allIndividualValues = new HashSet<Integer>();
+            Set<Integer> allIndividualValues = new HashSet<>();
             allPresentValuesInRow.forEach(cell -> allIndividualValues.add(cell.getNumInside()));
 
             if (allIndividualValues.size() != allPresentValuesInRow.size()) {
@@ -53,7 +53,7 @@ public class InputValidator {
             List<Cell> allPresentValuesInSquare = s.getCellsInBox();
             allPresentValuesInSquare = allPresentValuesInSquare.stream().filter(cell -> cell.getNumInside() != -1).collect(Collectors.toList());
 
-            Set<Integer> allIndividualValues = new HashSet<Integer>();
+            Set<Integer> allIndividualValues = new HashSet<>();
             allPresentValuesInSquare.forEach(cell -> allIndividualValues.add(cell.getNumInside()));
 
             if (allIndividualValues.size() != allPresentValuesInSquare.size()) {

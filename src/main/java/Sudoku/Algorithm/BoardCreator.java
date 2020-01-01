@@ -1,18 +1,15 @@
 package Sudoku.Algorithm;
 
 import Sudoku.Elements.Board;
-import Sudoku.Layout.SudokuWindow;
-import Sudoku.Elements.Box;
 import Sudoku.Elements.Cell;
-import Sudoku.Elements.Column;
 import javafx.scene.control.TextField;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class BoardCreator {
-    private TextField[][] textFields;
-    private Board board = new Board();
+    private final TextField[][] textFields;
+    private final Board board = new Board();
 
 
     public BoardCreator(TextField[][] textFields) {
@@ -74,9 +71,7 @@ public class BoardCreator {
 
         allPresentValues.stream()
                 .filter(cell -> valuesToHighlight.contains(cell.getNumInside()))
-                .forEach(cell -> {
-                    textFields[cell.getColumnNum()][cell.getRowNum()].setStyle("-fx-background-color: red");
-                });
+                .forEach(cell -> textFields[cell.getColumnNum()][cell.getRowNum()].setStyle("-fx-background-color: red"));
     }
 
     

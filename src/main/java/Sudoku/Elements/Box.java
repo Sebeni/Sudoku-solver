@@ -1,16 +1,15 @@
 package Sudoku.Elements;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class Box  {
-    private List<Cell> cellsInBox = new ArrayList<Cell>(9);
+    private final List<Cell> cellsInBox = new ArrayList<>(9);
 
     public void addCells(Cell... cellsToAdd) {
-        for(Cell c : cellsToAdd){
-            cellsInBox.add(c);
-        }
+        cellsInBox.addAll(Arrays.asList(cellsToAdd));
     }
 
     public List<Cell> getCellsInBox() {

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Board implements Cloneable  {
-    private List<Column> columns = new ArrayList<>(9);
-    private List<Box> boxes = new ArrayList<>(9);
+    private final List<Column> columns = new ArrayList<>(9);
+    private final List<Box> boxes = new ArrayList<>(9);
 
     
     public Board() {
@@ -79,9 +79,11 @@ public class Board implements Cloneable  {
 
     @Override
     public Board clone() throws CloneNotSupportedException {
+//        Board boardClone = (Board) super.clone(); // doesn't work properly on hardest sudoku
         Board original = this;
-        
+
         Board boardClone = new Board();
+        
         
         for(Column column : original.getColumns()) {
             for(Cell c : column.getCells()) {

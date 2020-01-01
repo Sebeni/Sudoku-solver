@@ -1,19 +1,15 @@
 package Sudoku.Elements;
 
-import Sudoku.Algorithm.Resolver;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Cell  {
     private int numInside;
-    private int rowNum;
-    private int columnNum;
-    
-    
+    private final int rowNum;
+    private final int columnNum;
     private List<Integer> possibleChoices = new ArrayList<>();
-    public static int EMPTY = -1;
+    public static final int EMPTY = -1;
     
 
     public Cell(int numInside, int columnNum, int rowNum) {

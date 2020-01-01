@@ -15,10 +15,9 @@ import javafx.scene.layout.*;
 public class SudokuWindow {
     private final Scene scene;
     private final GridPane gridPane = new GridPane();
-    private BoardCreator creator;
-    
-    
-//    [column][row]
+
+
+    //    [column][row]
     private final TextField[][] textFields = new TextField[9][9];
     private final Pane[][] rootPanes = new Pane[9][9];
 
@@ -114,7 +113,7 @@ public class SudokuWindow {
 
     private void resolveButtonHandler() {
         clearStyles();
-        creator = new BoardCreator(textFields);
+        BoardCreator creator = new BoardCreator(textFields);
         if (creator.setCells()) {
             Board b = creator.getBoard();
             Resolver resolver = new Resolver(b);

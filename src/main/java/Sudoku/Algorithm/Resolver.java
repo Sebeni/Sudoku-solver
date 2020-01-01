@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class Resolver {
     private Board board;
-    private LinkedList<BoardState> backTrack = new LinkedList<>();
+    private final LinkedList<BoardState> backTrack = new LinkedList<>();
     private boolean actionTaken;
    
     public boolean stopIteration = false;
