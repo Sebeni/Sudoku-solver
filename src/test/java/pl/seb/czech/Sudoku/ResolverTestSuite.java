@@ -15,7 +15,6 @@ public class ResolverTestSuite {
 
     @Test
     public void testResolveEasySudoku() {
-
 //        given
         Board board = new Board();
         String values =
@@ -82,13 +81,11 @@ public class ResolverTestSuite {
 
         printBoard(result);
 
-
 //        then
-
         Assert.assertEquals(3, result.getColumn(0).getCell(0).getNumInside());
         Assert.assertEquals(7, result.getColumn(1).getCell(0).getNumInside());
         Assert.assertEquals(1, result.getColumn(8).getCell(0).getNumInside());
-        Assert.assertTrue(onlyUniqueNumbers(result));
+        Assert.assertTrue(areOnlyUniqueNumbers(result));
     }
 
     @Test
@@ -145,7 +142,7 @@ public class ResolverTestSuite {
         printBoard(result);
 
 //        then
-        Assert.assertTrue(onlyUniqueNumbers(result));
+        Assert.assertTrue(areOnlyUniqueNumbers(result));
     }
     
     
@@ -176,7 +173,6 @@ public class ResolverTestSuite {
                         "868";
 
         fillBoard(board, values);
-        printBoard(board);
 
         BoardCreator mockCreator = Mockito.mock(BoardCreator.class);
 
@@ -194,7 +190,7 @@ public class ResolverTestSuite {
         printBoard(result);
 
 //        then
-        Assert.assertTrue(onlyUniqueNumbers(result));
+        Assert.assertTrue(areOnlyUniqueNumbers(result));
         Assert.assertEquals(9, result.getColumn(0).getCell(1).getNumInside());
         Assert.assertEquals(2, result.getColumn(8).getCell(8).getNumInside());
         
@@ -210,7 +206,6 @@ public class ResolverTestSuite {
             int value = Character.getNumericValue(numbers[i + 2]);
 
             board.getColumn(column).getCell(row).setNumInside(value);
-
         }
     }
 
@@ -221,7 +216,6 @@ public class ResolverTestSuite {
 
             }
             System.out.println();
-
         }
     }
     
@@ -240,13 +234,11 @@ public class ResolverTestSuite {
         
     }
     
-    private boolean onlyUniqueNumbers(Board filledBoard) {
+    private boolean areOnlyUniqueNumbers(Board filledBoard) {
         Map<Column, Set<Integer>> allValuesInColumns = new HashMap<>();
         
         for(Column c : filledBoard.getColumns()){
-            Set<Integer> valuesInColumn = c.getCells().stream()
-                    .map(cell -> cell.getNumInside())
-                    .collect(Collectors.toSet());
+            Set<Integer> valuesInColumn = getValuesFromCells(c.getCells());
 
             allValuesInColumns.put(c, valuesInColumn);
         }
@@ -254,13 +246,10 @@ public class ResolverTestSuite {
         boolean areColumnsIncorrect = allValuesInColumns.entrySet().stream()
                 .anyMatch(columnSetEntry -> columnSetEntry.getValue().size() != 9);
         
-        
         Map<Box, Set<Integer>> allValuesInBoxes = new HashMap<>();
         
         for(Box b : filledBoard.getBoxes()){
-            Set<Integer> valuesInBox = b.getCellsInBox().stream()
-                    .map(cell -> cell.getNumInside())
-                    .collect(Collectors.toSet());
+            Set<Integer> valuesInBox = getValuesFromCells(b.getCellsInBox());
             
             allValuesInBoxes.put(b, valuesInBox);
         }
@@ -268,10 +257,7 @@ public class ResolverTestSuite {
         boolean areBoxesIncorrect = allValuesInBoxes.entrySet().stream()
                 .anyMatch(columnSetEntry -> columnSetEntry.getValue().size() != 9);
         
-        
-        
         Map<List<Cell>, Set<Integer>> allValuesInRows = new HashMap<>();
-        
         
         for(int row = 0; row < 9; row++) {
             List<Cell> cellsInRow = new ArrayList<>();
@@ -279,22 +265,20 @@ public class ResolverTestSuite {
                 cellsInRow.add(filledBoard.getColumn(columnNum).getCell(row));
             }
             
-            Set<Integer> valuesInRow = cellsInRow.stream()
-                    .map(cell -> cell.getNumInside())
-                    .collect(Collectors.toSet());
-            
+            Set<Integer> valuesInRow = getValuesFromCells(cellsInRow);
             allValuesInRows.put(cellsInRow, valuesInRow);
         }
         
         boolean areRowsIncorrect = allValuesInRows.entrySet().stream()
                 .anyMatch(columnSetEntry -> columnSetEntry.getValue().size() != 9);
         
-        
         return !areColumnsIncorrect && !areBoxesIncorrect && !areRowsIncorrect;
         
     }
-
     
-
-
+    private Set<Integer> getValuesFromCells(List<Cell> cellList){
+        return cellList.stream()
+                .map(Cell::getNumInside)
+                .collect(Collectors.toSet());
+    }
 }
