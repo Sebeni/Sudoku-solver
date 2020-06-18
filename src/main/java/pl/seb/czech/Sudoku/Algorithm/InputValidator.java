@@ -1,7 +1,7 @@
-package Sudoku.Algorithm;
+package pl.seb.czech.Sudoku.Algorithm;
 
-import Sudoku.Elements.Box;
-import Sudoku.Elements.Cell;
+import pl.seb.czech.Sudoku.Elements.Box;
+import pl.seb.czech.Sudoku.Elements.Cell;
 
 import java.util.HashSet;
 import java.util.List;

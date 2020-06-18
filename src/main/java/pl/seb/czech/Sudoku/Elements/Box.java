@@ -1,4 +1,4 @@
-package Sudoku.Elements;
+package pl.seb.czech.Sudoku.Elements;
 
 import java.util.ArrayList;
 import java.util.Arrays;

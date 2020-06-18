@@ -1,4 +1,4 @@
-package Sudoku.Layout;
+package pl.seb.czech.Sudoku.Layout;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

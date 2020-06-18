@@ -3,7 +3,13 @@ plugins {
 }
 
 group 'pl.seb.czech'
-version '1.0-SNAPSHOT'
+version '1.0'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'pl.seb.czech.Sudoku.Main'
+    }
+}
 
 sourceCompatibility = 1.8
 

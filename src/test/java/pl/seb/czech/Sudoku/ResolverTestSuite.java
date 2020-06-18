@@ -1,8 +1,8 @@
-package Sudoku;
+package pl.seb.czech.Sudoku;
 
-import Sudoku.Algorithm.BoardCreator;
-import Sudoku.Elements.*;
-import Sudoku.Algorithm.Resolver;
+import pl.seb.czech.Sudoku.Algorithm.BoardCreator;
+import pl.seb.czech.Sudoku.Elements.*;
+import pl.seb.czech.Sudoku.Algorithm.Resolver;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -149,7 +149,6 @@ public class ResolverTestSuite {
     }
     
     
-//    https://curiosity.com/topics/a-finnish-mathematician-claimed-that-this-is-the-most-difficult-sudoku-puzzle-in-the-world-curiosity/
     @Test
     public void testResolveWorldsHardestSudoku() {
         Board board = new Board();

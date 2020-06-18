@@ -1,7 +1,7 @@
-package Sudoku.Algorithm;
+package pl.seb.czech.Sudoku.Algorithm;
 
-import Sudoku.Elements.Board;
-import Sudoku.Elements.Cell;
+import pl.seb.czech.Sudoku.Elements.Board;
+import pl.seb.czech.Sudoku.Elements.Cell;
 
 import java.util.LinkedList;
 

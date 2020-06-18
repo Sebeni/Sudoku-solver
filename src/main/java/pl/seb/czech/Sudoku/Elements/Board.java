@@ -1,4 +1,4 @@
-package Sudoku.Elements;
+package pl.seb.czech.Sudoku.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +79,7 @@ public class Board implements Cloneable  {
 
     @Override
     public Board clone() throws CloneNotSupportedException {
-//        Board boardClone = (Board) super.clone(); // doesn't work properly on hardest sudoku
+//        Board boardClone = (Board) super.clone(); // doesn't work properly on hardest sudoku;
         Board original = this;
 
         Board boardClone = new Board();

@@ -1,10 +1,10 @@
-package Sudoku.Algorithm;
+package pl.seb.czech.Sudoku.Algorithm;
 
-import Sudoku.Elements.Board;
-import Sudoku.Elements.Box;
-import Sudoku.Elements.Cell;
-import Sudoku.Elements.Column;
-import Sudoku.Layout.AlertWindow;
+import pl.seb.czech.Sudoku.Elements.Board;
+import pl.seb.czech.Sudoku.Elements.Box;
+import pl.seb.czech.Sudoku.Elements.Cell;
+import pl.seb.czech.Sudoku.Elements.Column;
+import pl.seb.czech.Sudoku.Layout.AlertWindow;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,7 +1,8 @@
-package Sudoku.Layout;
+package pl.seb.czech.Sudoku;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import pl.seb.czech.Sudoku.Layout.SudokuWindow;
 
 public class Main extends Application {
 

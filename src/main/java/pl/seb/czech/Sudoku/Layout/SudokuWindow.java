@@ -1,10 +1,10 @@
-package Sudoku.Layout;
+package pl.seb.czech.Sudoku.Layout;
 
-import Sudoku.Algorithm.BoardCreator;
-import Sudoku.Algorithm.Resolver;
-import Sudoku.Elements.Board;
-import Sudoku.Elements.Cell;
-import Sudoku.Elements.Column;
+import pl.seb.czech.Sudoku.Algorithm.BoardCreator;
+import pl.seb.czech.Sudoku.Algorithm.Resolver;
+import pl.seb.czech.Sudoku.Elements.Board;
+import pl.seb.czech.Sudoku.Elements.Cell;
+import pl.seb.czech.Sudoku.Elements.Column;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
